@@ -1,20 +1,13 @@
-
-
-import '../main.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import '../providers/shoe_provider.dart';
-// import '../models/shoe_model.dart';
-
-
+import '../models/shoe_model.dart';
+import '../providers/shoe_provider.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItem cartItem;
 
   const CartItemWidget({super.key, required this.cartItem});
-
 
   @override
   Widget build(BuildContext context) {

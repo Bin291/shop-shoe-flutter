@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../main.dart';
-
-
-
-
-
+import '../models/shoe_model.dart';
+import '../pages/product_details_page.dart';
+import '../providers/shoe_provider.dart';
 
 class ShoeCard extends StatelessWidget {
   final Shoe shoe;

@@ -1,13 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/shoe_provider.dart';
-
 import '../widgets/shoe_card.dart';
+import '../providers/shoe_provider.dart';
 import 'cart_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  // Function to determine the greeting based on the time of day
+  String _getGreeting() {
+    final hour = DateTime.now().hour;
+    if (hour >= 0 && hour < 12) {
+      return 'Good Morning';
+    } else if (hour >= 12 && hour < 17) {
+      return 'Good Afternoon';
+    } else if (hour >= 17 && hour < 22) {
+      return 'Good Evening';
+    } else {
+      return 'Good Night';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +30,25 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text('Phuong Binh', style: TextStyle(color: Colors.white)),
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 16,
+              backgroundImage: NetworkImage(
+                'https://img.freepik.com/free-photo/3d-portrait-chef_23-2150793925.jpg', // Placeholder image URL for the avatar
+              ),
+              backgroundColor: Colors.grey[300], // Fallback color if the image fails to load
+              onBackgroundImageError: (exception, stackTrace) {
+                // Handle image load error if needed
+              },
+            ),
+            SizedBox(width: 8),
+            Text(
+              '${_getGreeting()}, PB',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             icon: Icon(CupertinoIcons.bell, color: Colors.white),
@@ -33,7 +64,7 @@ class HomePage extends StatelessWidget {
             colors: [
               Colors.black,
               Colors.grey[900]!,
-              Color(0xFF2F4F4F),
+              Color(0xFF2F4F4F), // Moss green
             ],
           ),
         ),
@@ -48,7 +79,7 @@ class HomePage extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.grey[900],
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(35),
+                    borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -115,15 +146,15 @@ class HomePage extends StatelessWidget {
           colors: [
             Colors.black,
             Colors.grey[900]!,
-            Color(0xFF2F4F4F),
+            Color(0xFF2F4F4F), // Moss green
           ],
         ),
       ),
       child: BottomNavigationBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.yellow,
+        unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.cart), label: 'Cart'),

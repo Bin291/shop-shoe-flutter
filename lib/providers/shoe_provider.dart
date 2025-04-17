@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
-import '../main.dart';
+import '../models/shoe_model.dart';
 
 class ShoeProvider with ChangeNotifier {
   final List<Shoe> _shoes = [
@@ -17,7 +14,7 @@ class ShoeProvider with ChangeNotifier {
         ShoeColor(name: 'Teal', color: Colors.teal),
         ShoeColor(name: 'Yellow', color: Colors.yellow),
       ],
-      imageUrl: 'https://i.pinimg.com/736x/37/cd/93/37cd9342417c0c486ae065bb5f6ebf82.jpg',
+      imageUrl: 'https://i.pinimg.com/originals/c2/ed/b3/c2edb359d7856a59bc9e696fd310933d.jpg',
       rating: 4.5,
       selectedColor: 'Red',
     ),
@@ -31,7 +28,7 @@ class ShoeProvider with ChangeNotifier {
         ShoeColor(name: 'White', color: Colors.white),
         ShoeColor(name: 'Blue', color: Colors.blue),
       ],
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpMedpdAJ9Y06MVXbjD53uIUSHBeNC-qF0-A&s',
+      imageUrl: 'https://lecoureurnordique.ca/cdn/shop/products/nike-air-zoom-pegasus-37-shield-homme-le-coureur-nordique-9_700x700.jpg?v=1668741540',
       rating: 4.7,
       selectedColor: 'Black',
     ),
@@ -45,7 +42,7 @@ class ShoeProvider with ChangeNotifier {
         ShoeColor(name: 'Green', color: Colors.green),
         ShoeColor(name: 'Yellow', color: Colors.yellow),
       ],
-      imageUrl: 'https://i.pinimg.com/originals/c2/ed/b3/c2edb359d7856a59bc9e696fd310933d.jpg',
+      imageUrl: 'https://i.sportisimo.com/products/images/582/582625/700x700/nike-air-zoom-pegasus-34_4.jpg',
       rating: 4.6,
       selectedColor: 'Red',
     ),
@@ -73,7 +70,7 @@ class ShoeProvider with ChangeNotifier {
         ShoeColor(name: 'Black', color: Colors.black),
         ShoeColor(name: 'White', color: Colors.white),
       ],
-      imageUrl: 'https://thumbs.dreamstime.com/b/two-black-adidas-shoes-shown-mirror-white-have-shiny-appearance-370648034.jpg',
+      imageUrl: 'https://thumbs.dreamstime.com/b/dynamic-studio-shot-puma-sneakers-suspended-against-black-background-highlighting-their-sleek-navy-blue-design-white-324905434.jpg',
       rating: 4.4,
       selectedColor: 'Red',
     ),
@@ -93,7 +90,7 @@ class ShoeProvider with ChangeNotifier {
     ),
     Shoe(
       id: '7',
-      name: 'Ultra-boost 21',
+      name: 'FutureCraft 4D',
       brand: 'Adidas',
       price: 180.0,
       colors: [
@@ -101,13 +98,13 @@ class ShoeProvider with ChangeNotifier {
         ShoeColor(name: 'White', color: Colors.white),
         ShoeColor(name: 'Blue', color: Colors.blue),
       ],
-      imageUrl: 'https://t3.ftcdn.net/jpg/03/63/98/32/360_F_363983245_4icqrjbSqjPcnxF1onaNRQAW7MaSfurZ.jpg',
+      imageUrl: 'https://media.gq.com/photos/58e7c01f8e4ae708183f91ba/16:9/w_2560%2Cc_limit/adidas-futurecraft-4d-sneaker-00.jpg',
       rating: 4.8,
       selectedColor: 'Black',
     ),
     Shoe(
       id: '8',
-      name: 'Yeezy Boost 350',
+      name: 'Cloud White" GX9247',
       brand: 'Adidas',
       price: 220.0,
       colors: [
@@ -115,7 +112,7 @@ class ShoeProvider with ChangeNotifier {
         ShoeColor(name: 'Black', color: Colors.black),
         ShoeColor(name: 'Grey', color: Colors.grey),
       ],
-      imageUrl: 'https://images3.alphacoders.com/133/thumb-350-1331553.webp',
+      imageUrl: 'https://bizweb.dktcdn.net/100/413/756/products/image-1684057123032.png?v=1730995475437',
       rating: 4.9,
       selectedColor: 'Cream',
     ),
@@ -183,6 +180,7 @@ class ShoeProvider with ChangeNotifier {
     _saveCart();
     notifyListeners();
   }
+
   Future<void> _saveCart() async {
     final prefs = await SharedPreferences.getInstance();
     final cartData = _cartItems.map((item) => '${item.shoe.id}:${item.quantity}:${item.size}:${item.color}').join(',');

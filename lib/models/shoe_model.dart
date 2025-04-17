@@ -1,6 +1,3 @@
-// Models
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ShoeColor {
@@ -15,11 +12,11 @@ class Shoe {
   final String name;
   final String brand;
   final double price;
-  final List<ShoeColor> colors; // Updated to include a list of colors
+  final List<ShoeColor> colors;
   final String imageUrl;
   final double rating;
   bool isLiked;
-  String selectedColor; // To track the currently selected color
+  String selectedColor;
 
   Shoe({
     required this.id,
@@ -30,7 +27,7 @@ class Shoe {
     required this.imageUrl,
     required this.rating,
     this.isLiked = false,
-    required this.selectedColor, // Initialize with a default color
+    required this.selectedColor,
   });
 }
 
@@ -38,7 +35,7 @@ class CartItem {
   final Shoe shoe;
   int quantity;
   int size;
-  String color; // Add color to cart item
+  String color;
 
   CartItem({required this.shoe, this.quantity = 1, this.size = 40, required this.color});
 }
