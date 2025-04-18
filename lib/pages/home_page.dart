@@ -35,11 +35,11 @@ class HomePage extends StatelessWidget {
             CircleAvatar(
               radius: 16,
               backgroundImage: NetworkImage(
-                'https://img.freepik.com/free-photo/3d-portrait-chef_23-2150793925.jpg', // Placeholder image URL for the avatar
+                'https://img.freepik.com/free-photo/3d-portrait-chef_23-2150793925.jpg',
               ),
-              backgroundColor: Colors.grey[300], // Fallback color if the image fails to load
+              backgroundColor: Colors.grey[300],
               onBackgroundImageError: (exception, stackTrace) {
-                // Handle image load error if needed
+
               },
             ),
             SizedBox(width: 8),
@@ -56,61 +56,63 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.black,
-              Colors.grey[900]!,
-              Color(0xFF2F4F4F), // Moss green
+      body: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.black,
+                Colors.grey[900]!,
+                Color(0xFF2F4F4F),
+              ],
+            ),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    filled: true,
+                    fillColor: Colors.grey[900],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(35),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _buildFilterChip('All', provider.selectedBrand == 'All', provider),
+                    _buildFilterChip('Adidas', provider.selectedBrand == 'Adidas', provider),
+                    _buildFilterChip('Nike', provider.selectedBrand == 'Nike', provider),
+                    _buildFilterChip('Puma', provider.selectedBrand == 'Puma', provider),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: GridView.builder(
+                  padding: EdgeInsets.all(16),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.8,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  itemCount: provider.shoes.length,
+                  itemBuilder: (context, index) => ShoeCard(shoe: provider.shoes[index]),
+                ),
+              ),
             ],
           ),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  filled: true,
-                  fillColor: Colors.grey[900],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _buildFilterChip('All', provider.selectedBrand == 'All', provider),
-                  _buildFilterChip('Adidas', provider.selectedBrand == 'Adidas', provider),
-                  _buildFilterChip('Nike', provider.selectedBrand == 'Nike', provider),
-                  _buildFilterChip('Puma', provider.selectedBrand == 'Puma', provider),
-                ],
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                padding: EdgeInsets.all(16),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
-                itemCount: provider.shoes.length,
-                itemBuilder: (context, index) => ShoeCard(shoe: provider.shoes[index]),
-              ),
-            ),
-          ],
         ),
       ),
       bottomNavigationBar: _buildBottomNavBar(context),

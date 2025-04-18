@@ -7,7 +7,7 @@ import '../providers/shoe_provider.dart';
 class CartItemWidget extends StatelessWidget {
   final CartItem cartItem;
 
-  const CartItemWidget({super.key, required this.cartItem});
+  const CartItemWidget({super.key, required this.cartItem, required void Function() onRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,12 @@ class CartItemWidget extends StatelessWidget {
               children: [
                 Text(
                   cartItem.shoe.name,
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                Text('Color: ${cartItem.color}', style: TextStyle(color: Colors.grey, fontSize: 14)),
-                Text('\$${cartItem.shoe.price}', style: TextStyle(color: Colors.white, fontSize: 14)),
+                Text('Color: ${cartItem.color}', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                Text('\$${cartItem.shoe.price}', style: TextStyle(color: Colors.white, fontSize: 12)),
               ],
             ),
           ),
@@ -55,6 +55,11 @@ class CartItemWidget extends StatelessWidget {
                 onPressed: () => provider.updateQuantity(cartItem, cartItem.quantity + 1),
                 icon: Icon(CupertinoIcons.plus, color: Colors.white),
               ),
+              IconButton(
+                onPressed: () => provider.removeFromCart(cartItem),
+                icon: Icon(CupertinoIcons.delete_solid, color: Colors.white, size: 18),
+              ),
+
             ],
           ),
         ],

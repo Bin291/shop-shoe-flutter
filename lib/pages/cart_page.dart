@@ -47,10 +47,16 @@ class CartPage extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemExtent: 100,
                 padding: EdgeInsets.all(16),
                 itemCount: provider.cartItems.length,
-                itemBuilder: (context, index) => CartItemWidget(cartItem: provider.cartItems[index]),
+                itemBuilder: (context, index) => CartItemWidget(cartItem: provider.cartItems[index],
+                onRemove: () => provider.removeFromCart(provider.cartItems[index])),
+
               ),
+
             ),
             Padding(
               padding: EdgeInsets.all(16),

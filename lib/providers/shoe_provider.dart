@@ -204,4 +204,13 @@ class ShoeProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void removeFromCart(CartItem cartItem) {
+    _cartItems.remove(cartItem);
+    _saveCart();
+    notifyListeners();
+
+  }
+
+
 }
